@@ -8,7 +8,7 @@ const dbSettings = {
     database: process.env.DB,
 
     options:{
-        encrypt: false,
+        encrypt: true,
         trustServerCertificate:true,
         enableArithAbort:true
     }
@@ -16,20 +16,15 @@ const dbSettings = {
 }
 
 export async function getConnection(){
-    try {
-        const pool = await sql.connect(dbSettings);
-        const result = await pool.request().query("SELECT*FROM Products");
+    try{
+        const pool =await sql.connect(dbSettings);
         return pool;
-    } catch(error){
+    }catch(error){
         console.error(error);
-
     }
 }
 
 
-export async function on(){
-    console.log("hola");
-    return 7 ;
-}
+export{sql};
 
 

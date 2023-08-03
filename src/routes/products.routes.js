@@ -15,7 +15,6 @@ router.delete('/producto/eliminar', eliminateProducts);
 
 router.put('/producto/actualizar', updateProducts);
 
-router.get('/on', Products);
 
 
 
