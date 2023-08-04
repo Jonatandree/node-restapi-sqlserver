@@ -4,7 +4,6 @@ import querys from '../database/query'
 
 
 
-
 export const getProducts =  async (req,res) => {
     try {
         const pool = await getConnection();
@@ -79,11 +78,31 @@ export const deleteProduct =  async (req,res) => {
 }
 
 
+export const updateProductsById =  async (req,res) => {
+
+
+    const {name,description,quantity} =req.body;
+    const {id} =req.params
+
+
+    if(name==null|| description ==null, quantity==null){
+
+        return res.status(400).json({msg:'porfabor ingrese los datos completos'});
+    }
+
+    const pool = await getConnection();
+    await pool
+     .request()
+     .input("name",sql.VarChar,name)
+     .input("description",sql.Text,description)
+     .input("quantity",sql.Int,quantity)
+     .input("id",sql.Int,id)
+     .query(queries.updateProductById)
+
+    res.json({name,description,quantity});
 
 
 
-export const updateProducts =  async (req,res) => {
-    res.json('update product');
 
-}
+};
 
