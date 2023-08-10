@@ -18,12 +18,14 @@ export const getProducts =  async (req,res) => {
 
 
 export const createNewProducts =  async (req,res) => {
+    const {name,description,quantity} =req.body
 
-    const {name,description} =req.body
-    let {quantity} =req.body
-    if(quantity==null){
-        quantity =0;
-    } 
+    console.log(name)
+    console.log(description)
+    console.log(quantity)
+
+    
+     
     if(name==null|| description ==null){
         return res.status(400).json({msg:'porfabor ingrese los datos completos'})
     }
@@ -40,7 +42,8 @@ export const createNewProducts =  async (req,res) => {
         .input("quantity",sql.Int,quantity)
         .query(queries.createNewProducts);
         
-        res.json({name,description,quantity});
+        
+        res.render('crearproducto' );
         
     } catch (error) {
         res.status(500)
@@ -48,6 +51,7 @@ export const createNewProducts =  async (req,res) => {
         
     }
 
+    
 
 }
 
@@ -81,11 +85,14 @@ export const deleteProduct =  async (req,res) => {
 export const updateProductsById =  async (req,res) => {
     const {name,description,quantity} =req.body;
     const {id} =req.params
+    
+    
 
     if(name==null|| description ==null, quantity==null){
 
         return res.status(400).json({msg:'porfabor ingrese los datos completos'});
     }
+
     const pool = await getConnection();
     await pool
      .request()
@@ -96,6 +103,9 @@ export const updateProductsById =  async (req,res) => {
      .query(queries.updateProductById)
 
     res.json({name,description,quantity});
+
+    res.render('inicio', );
+    
 
 };
 

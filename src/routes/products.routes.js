@@ -3,7 +3,7 @@ import {getProductById, getProducts} from '../controllers/products.controller'
 import {createNewProducts} from '../controllers/products.controller';
 import {deleteProduct } from '../controllers/products.controller';
 import {updateProductsById} from '../controllers/products.controller';
-import {Products} from '../controllers/products.controller';
+
 
 const router =Router()
 router.get('/producto/obtener', getProducts);
