@@ -79,17 +79,13 @@ export const deleteProduct =  async (req,res) => {
 
 
 export const updateProductsById =  async (req,res) => {
-
-
     const {name,description,quantity} =req.body;
     const {id} =req.params
-
 
     if(name==null|| description ==null, quantity==null){
 
         return res.status(400).json({msg:'porfabor ingrese los datos completos'});
     }
-
     const pool = await getConnection();
     await pool
      .request()
@@ -100,9 +96,6 @@ export const updateProductsById =  async (req,res) => {
      .query(queries.updateProductById)
 
     res.json({name,description,quantity});
-
-
-
 
 };
 
